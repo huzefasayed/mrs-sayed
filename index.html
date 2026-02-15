@@ -14,12 +14,13 @@ html, body{
   font-family:'Poppins',sans-serif;
 }
 
+/* PAGE SYSTEM */
 .page{
-  position:absolute;
+  position:fixed;   /* FIXED */
   top:0;
   left:0;
   width:100%;
-  height:100vh;
+  height:100%;      /* FIXED */
   display:none;
   justify-content:center;
   align-items:center;
@@ -39,12 +40,73 @@ html, body{
   z-index:5;
 }
 
+/* BACKGROUND COLORS */
 #page1{ background:#f1e8dc; }
 #page2{ background:#cfcfcf; }
 #page3{ background:#f5d2c4; }
 #page4, #quizPage, #lastQuestion, #page5{ background:#efe6db; }
 #page6{ background:white; }
 
+/* DECORATIONS */
+.gold, .blob, .heart, .corner{
+  position:absolute;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* GOLD */
+.gold{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, #f6d365, #b8860b);
+}
+.gold.one{ top:-50px; right:-40px; }
+.gold.two{ bottom:-50px; left:-40px; }
+
+/* BLOBS */
+.blob{
+  width:400px;
+  height:400px;
+  border-radius:50%;
+  background:#9a9a9a;
+  opacity:0.25;
+}
+.blob.one{ top:60px; left:60px; }
+.blob.two{ bottom:60px; right:80px; }
+
+/* HEARTS */
+.heart{
+  width:120px;
+  height:120px;
+  background:#d89c88;
+  transform:rotate(-45deg);
+  opacity:0.25;
+}
+.heart:before,
+.heart:after{
+  content:"";
+  position:absolute;
+  width:120px;
+  height:120px;
+  background:#d89c88;
+  border-radius:50%;
+}
+.heart:before{ top:-60px; left:0; }
+.heart:after{ left:60px; top:0; }
+.heart.one{ top:140px; left:200px; }
+.heart.two{ bottom:150px; right:200px; }
+
+/* CORNERS */
+.corner{
+  width:200px;
+  height:200px;
+  background:radial-gradient(circle, rgba(184,134,11,0.3) 10%, transparent 70%);
+}
+.corner.tl{ top:0; left:0; }
+.corner.br{ bottom:0; right:0; }
+
+/* TEXT */
 h1{
   font-family:'Playfair Display',serif;
   font-size:clamp(26px,4vw,42px);
@@ -68,6 +130,7 @@ p{
   margin:8px 0;
 }
 
+/* BUTTON */
 button{
   padding:12px 28px;
   border:none;
@@ -93,29 +156,49 @@ button:hover{
 
 <body>
 
+<!-- PAGE 1 -->
 <div class="page active" id="page1">
+  <div class="gold one"></div>
+  <div class="gold two"></div>
   <div class="script">Hello My Pretty Wifeyy</div>
   <p>Come with me for a minute… I want to show you something.</p>
   <button onclick="goTo('page2')">Step In</button>
 </div>
 
+<!-- PAGE 2 -->
 <div class="page" id="page2">
+  <div class="blob one"></div>
+  <div class="blob two"></div>
   <h1>Happiest Birthday to my cute bachaa, my Ruhii Sayed.</h1>
-  <p>This is the day my favorite person was born.</p>
+  <p>This is the day my favorite person was born. You are my lucky charm, my bachaa, my everything.</p>
+  <p>You came into my life and suddenly everything changed. Now I am the happiest person on this planet.</p>
+  <p>I love you so much, bachuu. And I promise, I will always try to make you the happiest too.</p>
+  <p>Happy Birthday, jaan.</p>
   <button onclick="goTo('page3')">Next</button>
 </div>
 
+<!-- PAGE 3 -->
 <div class="page" id="page3">
+  <div class="heart one"></div>
+  <div class="heart two"></div>
   <h1>About You</h1>
+  <p>When I look at you, I don’t just see a girl… I see my bachaa.</p>
+  <p>The way you do your mastii. The way you randomly bite me. The way you come and talk to me even when you’re upset.</p>
+  <p>You being childish with me makes my heart so soft. You caring for me, feeding me with your own hands, supporting me no matter what… makes me feel truly loved.</p>
+  <p>Your loyalty, your eyes, your smile… You don’t even realize how much peace you give me.</p>
   <p>You’re not just my cutuu, my Ruii, my chidkuuu. You’re my heart.</p>
   <button onclick="goTo('page4')">Continue</button>
 </div>
 
+<!-- PAGE 4 -->
 <div class="page" id="page4">
+  <div class="corner tl"></div>
+  <div class="corner br"></div>
   <h1>Let’s Play a Quiz</h1>
   <button onclick="startQuiz()">Are you ready?</button>
 </div>
 
+<!-- QUIZ -->
 <div class="page" id="quizPage">
   <h1 id="questionText"></h1>
   <button onclick="nextQuestion()">Yes</button>
@@ -127,42 +210,37 @@ button:hover{
   <button onclick="goTo('page5')">Continue</button>
 </div>
 
+<!-- PROPOSAL -->
 <div class="page" id="page5">
+  <div class="corner tl"></div>
+  <div class="corner br"></div>
   <h1>Will you hold my hand and stay with me forever?</h1>
   <button onclick="goTo('page6')">Yes</button>
   <button id="noBtn">No</button>
 </div>
 
+<!-- FINAL -->
 <div class="page" id="page6">
+  <div class="corner tl"></div>
+  <div class="corner br"></div>
   <div class="script">Mrs Sayed</div>
   <h1>Thank you so much, my wifeyy.</h1>
+  <p><strong>My Promises to You</strong></p>
+  <p>I promise to choose you, even on the days we argue.</p>
+  <p>I promise to protect your soft heart like it’s the most precious thing in the world.</p>
+  <p>I promise to let you be my childish bachaa forever.</p>
+  <p>I promise to always hold you close when you need comfort.</p>
+  <p>I promise to never take your loyalty for granted.</p>
+  <p>I promise to annoy you, love you, and stay obsessed with you for life.</p>
   <p>You are my peace. And I am not letting you go.</p>
 </div>
 
 <script>
-let isTransitioning = false;
-
 function goTo(id){
-  if(isTransitioning) return;
-  isTransitioning = true;
-
   document.querySelectorAll('.page').forEach(p=>{
     p.classList.remove('active');
   });
-
   document.getElementById(id).classList.add('active');
-
-  // disable all buttons briefly
-  document.querySelectorAll("button").forEach(btn=>{
-    btn.disabled = true;
-  });
-
-  setTimeout(()=>{
-    isTransitioning = false;
-    document.querySelectorAll("button").forEach(btn=>{
-      btn.disabled = false;
-    });
-  }, 400);
 }
 
 const questions=[
@@ -182,8 +260,6 @@ function startQuiz(){
 }
 
 function nextQuestion(){
-  if(isTransitioning) return;
-
   current++;
   if(current<questions.length){
     document.getElementById("questionText").innerText=questions[current];
